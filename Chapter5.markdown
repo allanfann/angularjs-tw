@@ -177,7 +177,7 @@ AngularJS對所有`$http`服務發起的請求和回應做一些基本的轉換,
 我們的`NameListCtrl`控制器是一個非常簡單的控制器.它的存在只有一個目的：訪問`names`API接口，然後把得到資料存儲在作用域scope模型內.
 
     function NamesListCtrl($scope, $http) {
-        $http.get('http://server/names', {params: {filter: 『none』}}).
+        $http.get('http://server/names', {params: {filter: "none"}}).
             success(function(data) {
                 $scope.names = data;
         });
