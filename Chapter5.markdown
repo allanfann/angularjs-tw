@@ -109,7 +109,7 @@ AngularJS有一個默認的頭訊息,這個頭訊息將會對所有的發送請�
 
 如果你想設定任何特定的頭訊息,這兒有兩種方法來做這件事：
 
-第一種方法,如果你相對所有的發送請求都使用這些特定頭訊息,那你需要把特定有訊息設定為Angular默認頭訊息的一部分.可以在`$httpProvider.defaults.headers`配置對像裡面設定這個,這個步驟通常會在你的app設定config部分來做.所以如果你想移除"Requested-With"頭訊息且對所有的GET請求啟用"DO NOT TRACK"設定,你可以簡單地經由以下代碼來做:
+第一種方法,如果你想對所有的發送請求都使用這些特定頭訊息,那你需要把特定有訊息設定為Angular默認頭訊息的一部分.可以在`$httpProvider.defaults.headers`配置對像裡面設定這個,這個步驟通常會在你的app設定config部分來做.所以如果你想移除"Requested-With"頭訊息且對所有的GET請求啟用"DO NOT TRACK"設定,你可以簡單地經由以下代碼來做:
 
     angular.module('MyApp',[]).
         config(function($httpProvider) {
