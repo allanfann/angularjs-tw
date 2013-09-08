@@ -17,7 +17,7 @@
         }
     };
     // Setup connection
-    xmlhttp.open(「GET」, 「http://myserver/api」, true);
+    xmlhttp.open("GET", "http://myserver/api", true);
     // Make the request
     xmlhttp.send();
     
