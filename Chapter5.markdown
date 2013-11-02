@@ -17,7 +17,7 @@
         }
     };
     // Setup connection
-    xmlhttp.open(「GET」, 「http://myserver/api」, true);
+    xmlhttp.open("GET", "http://myserver/api", true);
     // Make the request
     xmlhttp.send();
     
@@ -109,7 +109,7 @@ AngularJS有一個默認的頭訊息,這個頭訊息將會對所有的發送請�
 
 如果你想設定任何特定的頭訊息,這兒有兩種方法來做這件事：
 
-第一種方法,如果你相對所有的發送請求都使用這些特定頭訊息,那你需要把特定有訊息設定為Angular默認頭訊息的一部分.可以在`$httpProvider.defaults.headers`配置對像裡面設定這個,這個步驟通常會在你的app設定config部分來做.所以如果你想移除"Requested-With"頭訊息且對所有的GET請求啟用"DO NOT TRACK"設定,你可以簡單地經由以下代碼來做:
+第一種方法,如果你想對所有的發送請求都使用這些特定頭訊息,那你需要把特定有訊息設定為Angular默認頭訊息的一部分.可以在`$httpProvider.defaults.headers`配置對像裡面設定這個,這個步驟通常會在你的app設定config部分來做.所以如果你想移除"Requested-With"頭訊息且對所有的GET請求啟用"DO NOT TRACK"設定,你可以簡單地經由以下代碼來做:
 
     angular.module('MyApp',[]).
         config(function($httpProvider) {
@@ -177,7 +177,7 @@ AngularJS對所有`$http`服務發起的請求和回應做一些基本的轉換,
 我們的`NameListCtrl`控制器是一個非常簡單的控制器.它的存在只有一個目的：訪問`names`API接口，然後把得到資料存儲在作用域scope模型內.
 
     function NamesListCtrl($scope, $http) {
-        $http.get('http://server/names', {params: {filter: 『none』}}).
+        $http.get('http://server/names', {params: {filter: "none"}}).
             success(function(data) {
                 $scope.names = data;
         });
