@@ -1,4 +1,5 @@
-﻿#第三章 AngularJS開發
+﻿第三章 AngularJS開發
+---
 
 現在, 我們已經探究了組成AngularJS的一些輪子. 我們已經知道用戶進入我們的應用程式後如何取得資料, 如何顯示文字, 以及如何做一些時髦的驗證, 過濾和改變DOM. 但是我們要如何把它們組織在一起呢?
 
@@ -14,7 +15,7 @@
 
 本章旨在提供一個20000英尺的視圖以告訴你如何可行的部署你的AngularJS應用程式. 我們不會進入實際應用程式本身. 在第4章, 深入一個使用和展示了各種各樣AngularJS特性的範例一用程序.
 
-##專案架構
+## 專案架構
 
 推薦使用Yeoman構建你的項目, 將會為你的AngularJS應用程式建立所有必要的輔助程序文件.
 
@@ -72,11 +73,11 @@ AngularJS自帶了端對端的測試支持以正確的方式內置到庫裡面. 
 
 別擔心, 年輕的蚱蜢, 所有的這些在適當的時間都會解釋. 在這一章裡面, 我們將處理設定項目和開發環境的問題, 因此一旦我們摻入一些驚人的代碼, 那些問題都可以快速的帶過. 你所編寫的代碼以及如何將它們與你最終的驚人的應用程式聯繫在一起的問題, 我們將在接下來的幾章中討論.
 
-##工具
+## 工具
 
 AngularJS只是你開發實際網頁的工具箱的一部分. 在這一節, 我們將一起開看看一些你用以確保高效和快速開發的不同的工具, 從IDEs到測試運行器到偵錯工具.
 
-###IDEs
+### IDEs
 
 讓我們從你如何編寫原始碼開始. 有大量的JavaScript編輯器可以選擇, 有免費的也有付費的. 長時間以來的事實證明Emacs和Vi是開發JS的最好選擇. 現在, 各種IDEs都自帶了語法高亮, 自動完成以及其他功能, 它給你一個選擇的餘地, 這可能是值得的. 那麼, 應該使用那一個呢?
 
@@ -105,19 +106,19 @@ AngularJS只是你開發實際網頁的工具箱的一部分. 在這一節, 我�
 
 然後按`Tab`鍵取得同樣的代碼. 這只是大多數代碼自動完成插件提供的功能之一.
 
-##運行你的應用程式
+## 運行你的應用程式
 
 現在讓我們討論如何運行所有你所做的事情 - 查看應用程式活動起來, 在瀏覽器中. 真實的感受以下應用程式是如何工作, 我們需要一個伺服器來服務於我們的HTML和JavaScript代碼. 我將探討兩種方式, 一種非常簡單的方式是使用Yeoman運行應用程式, 另外一種不是很容易的不用Yeoman的方法, 但是同樣很好.
 
-###使用Yeoman
+### 使用Yeoman
 
 Yeoman讓你很簡單的使用一個Web伺服器服務你所有的靜態資源和相關的JavaScript文件. 只需要運行以下命令:
-	
+
 	yeoman server
 
 它將啟動一個伺服器同時在你的瀏覽器中打開AngularJS應用程式的主頁. 每當你改變你的原始碼時, 它甚至會刷新(自動刷新)瀏覽器. 很酷不是嗎?
 
-###不使用Yeoman
+### 不使用Yeoman
 
 如果不使用Yeoman, 你可能需要配置一個伺服器來服務你所有主目錄中的文件. 如果你不知道一個簡單的方法做到這一點, 或者不想浪費時間建立你自己的Web伺服器, 你可以在Node.js中使用ExpressJS快速的編寫一個簡單的Web伺服器(只要簡單的使用`npm install -g express`來取得它). 它可能看起來像下面這樣:
 
@@ -129,7 +130,7 @@ Yeoman讓你很簡單的使用一個Web伺服器服務你所有的靜態資源�
 		app.configure(function(){
 			app.use(express.methodOverride());
 			app.use(express.bodyParser());
-			app.use(express.static(__dirname + '/'));
+			app.use(express.static( //__ dirname + '/'));
 			app.use(app.router);
 		});
 
@@ -152,11 +153,11 @@ Yeoman讓你很簡單的使用一個Web伺服器服務你所有的靜態資源�
 
 然後你就可以在瀏覽器中查看你剛剛建立的應用程式. 注意, 你需要手動的刷新瀏覽器來查看改變, 不同於使用Yeoman.
 
-##測試AngularJS
+## 測試AngularJS
 
 之前已經說過(甚至在本章的前面), 我們再重新說一次: 測試是必不可少的, AngularJS使編寫合理的單元測試和整合測試變得很簡單. 雖然AngularJS使用多個測試運行器運行的很好, 但我們堅信[Karma](http://karma-runner.github.io/0.8/index.html)勝過大多數你所需要的提供強大, 堅實和及其快速的運行器.
 
-###Karma
+### Karma
 
 Karma存在的主要的原因是它讓你的測試驅動開發(TDD)流程變得簡單, 快速和有趣. 它使用NodeJS和SocketIO(你不需要知道它們是什麼, 只需要假設它們是很棒很酷的函式庫), 並允許在多個瀏覽器中及其快速的運行你的代碼和測試. 在[https:// github.com/vojtajina/karma/](https:// github.com/vojtajina/karma/)中可以找到更多訊息.
 
@@ -165,7 +166,7 @@ Karma存在的主要的原因是它讓你的測試驅動開發(TDD)流程變得�
 > 測試驅動開發或者TDD, 是一個經由確保在開發生命週期內首先編寫測試的敏捷方法, 這是在代碼實現之前進行的, 這就是測試驅動的開發(不只是作為一種驗證工具).
 >
 > TDD的原則很簡單:
-> 
+>
 + 代碼只需要在一個所需要的代碼測試失敗時編寫.
 +  編寫最少的代碼以確保測試經由.
 +  在每一步刪除重複代碼.
@@ -214,7 +215,7 @@ Karma存在的主要的原因是它讓你的測試驅動開發(TDD)流程變得�
 
 就是這樣. 運行這個命令之後, 你應該獲得正好打印在控制台中的結果. 很簡單, 不是嗎?
 
-##單元測試
+## 單元測試
 
 AngularJS是的編寫單元測試變得更簡單, 默認情況下支持編寫[Jasmine](http://pivotal.github.io/jasmine/)風格的測試(就是Karma). Jasmine就是我們所說的行為驅動開發框架, 它允許你編寫規範來說明你的代碼行為應該如何表現. 一個Jasmine測試範例看起來可能是這樣子的.
 
@@ -240,9 +241,9 @@ Karma並沒有所有最新版和最好的(greatest)IDEs使用的插件(已經實
 
 **在每一個變化上運行測試**
 
-這是許多TDD開發者的理想國: 能夠運行在它們所有的測試中, 每次它們按下保存, 在急毫秒之內迅速的得到返回結果. 使用AngularJS和Karma可以很容易做到這一點. 事實證明, Karma配置文件(記住就是前面的`karma.conf.js`)有一個看似無害的名為**`autoWatch`**的標誌. 設定它為true來告訴Karma每次運行你的測試文件(這就是你的原始碼和測試代碼)都監控它的變化. 然後在你的IDE中執行"karma start", 猜猜會怎樣? Karma運行結果將可供你的IDE使用. 你甚至不需要切換控制台或者終端來瞭解發生了什麼.
+這是許多TDD開發者的理想國: 能夠運行在它們所有的測試中, 每次它們按下保存, 在急毫秒之內迅速的得到返回結果. 使用AngularJS和Karma可以很容易做到這一點. 事實證明, Karma配置文件(記住就是前面的`karma.conf.js`)有一個看似無害的名為`autoWatch`的標誌. 設定它為true來告訴Karma每次運行你的測試文件(這就是你的原始碼和測試代碼)都監控它的變化. 然後在你的IDE中執行"karma start", 猜猜會怎樣? Karma運行結果將可供你的IDE使用. 你甚至不需要切換控制台或者終端來瞭解發生了什麼.
 
-##端到端/整合測試
+## 端到端/整合測試
 
 隨著應用程式的發展(或者有這個趨勢, 事實上很快, 之前你甚至已經意識到這一點), 測試它們是否如預期那樣工作而不需要手動的裁剪任何功能. 畢竟, 沒一添加新的特性, 你不僅要驗證新特性的工作, 還要驗證老特性是否仍然更夠正常工作, 並且沒有bug和功能也沒有退化. 如果你開始添加多個瀏覽器, 你可以很容看出, 其實這些可以變成一個組合.
 
@@ -274,7 +275,7 @@ Scenario Runner允許你按照類Jasmine的語法來描述應用程式. 正如�
   b. 添加一個代理伺服器將請求定位到正確的測試文件所在目錄, 例如:
 
   	proxies = {'/': 'http://localhost:8000/test/e2e'};
-  
+
   c. 添加一個Karma root(根目錄/基礎路徑)以確保Karma的原始碼不會干擾你的測試, 像這樣:
 
   	urlRoot = '/_karma_/';
@@ -299,11 +300,11 @@ Angular場景情運行器, 顧名思義, 它是由Angular建立的. 因此, 他�
 
 Angular意識也意味著Angular直到所有的XHR何時向伺服器放出, 從而可以避免頁面加載所等待的間隔時間. 場景運行器直到何時加載一個頁面, 從而比Selenium測試更具確定性, 例如, 超時等待頁面加載時任務可能失敗.
 
-**偵錯功能** 
+**偵錯功能**
 
 探究JavaScript, 如果你查看你的代碼不是很好; 當你希望暫停和恢復測試時, 所有的這些都運行場景測試嗎? 然而所有的這一切經由Angular場景運行器都是可行的, 等等.
 
-##編譯
+## 編譯
 
 在JavaScript世界裡, 編譯通常意味著壓縮代碼, 雖然一些實際的編譯可能使用的時Google的Closure庫. 但是為麼你會希望將所有漂亮的, 寫的很好, 很容易理解代碼變得不可讀呢?
 
@@ -356,11 +357,11 @@ Angular意識也意味著Angular直到所有的XHR何時向伺服器放出, 從�
 
 > 每次都是數組的方式注入是比較好的處理發方式, 以避免開始編譯代碼時的錯誤. 撓頭並視圖找出為什麼提供的$e變數丟失了(一些任務的混餚版本壓縮了它)是不值得的.
 
-##其他優秀工具
+## 其他優秀工具
 
 在本節, 我們將會看一些其他有助於簡化你的開發流程和提高效率的工具. 這包括使用Batarang偵錯真實的代碼和使用Yeoman開發.
 
-###偵錯
+### 偵錯
 
 當你使用JavaScript工作時, 在瀏覽器中偵錯你的代碼會成為一個習慣. 你越早接受這個事實, 對你越有好處. 值得慶幸的是, 當過去沒有Firebug時, 這件事已經走過了漫長的路. 現在, 不管選擇什麼瀏覽器, 一般來說你都可以介入代碼來分析錯誤和判斷應用程式的狀態. 只需要去瞭解Chrome和Internet Explorer的開發者工具, 能同時在FireFox和Chrome中工作的Firebug.
 
@@ -371,7 +372,7 @@ Angular意識也意味著Angular直到所有的XHR何時向伺服器放出, 從�
 + 斷點偵錯是很有用的! 它們允許你檢查你的應用程式狀態, 模型, 以及給定的時間點上的所有訊息.
 + "暫停所有異常"是內置在當今大多數開發者工具中的一個非常有用的選項. 當發現一個異常是偵錯器會終止繼續運行並高亮導致異常的代碼行.
 
-###Batarang
+### Batarang
 
 當然, 我們有Batarang. Batarang是一個添加AngularJS知識的Chrome擴充, 它是嵌套在Google Chrome中內置開發者工具. 一旦安裝(你可以從[http://bit.ly/batarangjs](http://bit.ly/batarangjs)中取得), 它就會在Chorme的開發者工具面板中添加一個AngularJS選項.
 
@@ -379,7 +380,7 @@ Angular意識也意味著Angular直到所有的XHR何時向伺服器放出, 從�
 
 這裡有Batarang的四個主要的有用的附加功能:
 
-####模型選項
+#### 模型選項
 
 Batarang允許你從根源向下深入探究`scope`. 然後你可以看到這些`scopes`是如何嵌套以及模型是如何與之關聯的.(如圖3-2所示). 你甚至可以實時的改變它們並在應用程式中查看變化的反映. 很酷, 不是嗎?
 
@@ -387,7 +388,7 @@ Batarang允許你從根源向下深入探究`scope`. 然後你可以看到這些
 
 Figure 3-2 Model tree in Batarang
 
-####性能選項
+#### 性能選項
 
 性能選項必須單獨啟用, 它會注入一些特殊的JavaScript代碼到你的應用程式中. 一旦你啟用它, 你就可以看到不同的作用域和模型, 並且可以在每個作用域執行所有的性能監控表達式(如圖3-3所示). 隨著你使用應用程式, 性能也會得到更新, 因此它可以很好的實時工作.
 
@@ -395,7 +396,7 @@ Figure 3-2 Model tree in Batarang
 
 Figure 3-3. Performance tab in Batarang
 
-####服務依賴
+#### 服務依賴
 
 對於一個簡單的應用程式, 不會超過1-2個控制器和服務依賴. 但是事實上, 全面的應用程式, 如果沒有工具支持, 服務依賴管理會成為噩夢. 幸好這裡有Batarang可以給你提供服務, 填補這個洞, 因為它給你提供了一個乾淨, 簡單的方法來查看可視化的服務依賴圖表(如圖3-4所示).
 
@@ -403,7 +404,7 @@ Figure 3-3. Performance tab in Batarang
 
 Figure 3-4. Charting dependencies in Batarang
 
-####元素屬性和控制台訪問
+#### 元素屬性和控制台訪問
 
 當你經由HTML樣板來探究一個AngularJS應用程式時, 元素選項的屬性窗格中現在有一個額外的AngularJS屬性部分. 這允許你檢查模型所連接的給定元素的`scope`. 它也會公開這個元素的`scope`到控制台中, 因此你可以在控制台中經由`$scope`變數來訪問它. 如圖3-5所示:
 
@@ -411,7 +412,7 @@ Figure 3-4. Charting dependencies in Batarang
 
 Figure 3-5. AngularJS properties within Batarang
 
-##Yeoman: 優化你的工作流程
+## Yeoman: 優化你的工作流程
 
 相當多的工具如雨後春筍般湧現, 以幫助你在開發應用程式時優化工作流程. 我們在前面章節所談及的Yeoman就是這樣一種工具, 它擁有令人印象深刻的功能集, 包括:
 
@@ -423,7 +424,7 @@ Figure 3-5. AngularJS properties within Batarang
 
 它還很好的整合和擴充了AngularJS, 這也是我們為什麼強烈推薦任何AngularJS項目使用它的主要原因之一. 讓我們經由上面的集中方式使用Yeoman時你的生活更輕鬆.
 
-###安裝Yeoman
+### 安裝Yeoman
 
 安裝Yeoman是一個相當複雜的過程, 但也可以經由一些腳本來幫助你安裝.
 
@@ -435,7 +436,7 @@ Figure 3-5. AngularJS properties within Batarang
 
 對於Windows機器, 或者運行它是遇到任何問題, 到[https://github.com/yeoman/yeoman/ wiki/Manual-Install](https://github.com/yeoman/yeoman/ wiki/Manual-Install)並按照說明來安裝會讓你暢通無阻.
 
-###啟動一個新的AngularJS項目
+### 啟動一個新的AngularJS項目
 
 正如前面所提到的, 甚至一個簡單的項目都有許多技術需要處理, 從樣板到基礎控制, 再到庫依賴, 一切事情都需要結構化. 你可以手動的做這些工作, 或者也可以使用Yeoman處理它.
 
@@ -445,7 +446,7 @@ Figure 3-5. AngularJS properties within Batarang
 
 這將建立一個本章項目優化部分所詳細描述的一個完整的結構, 包括渲染路由的框架, 單元測試等等.
 
-###運行伺服器
+### 運行伺服器
 
 如果你不適用Yeoman, 那麼你不得不建立一個HTTP伺服器來服務你的前端代碼. 但是如果使用Yeoman, 那麼你將獲得一個內置的預先配置好的伺服器並且還能獲得一些額外的好處. 你可以使用下面的命令啟動伺服器:
 
@@ -453,7 +454,7 @@ Figure 3-5. AngularJS properties within Batarang
 
 這不單單只啟動一個Web伺服器來服務於你的代碼, 它還會自動打開你的Web瀏覽器並在你改變你的應用程式時刷新你的瀏覽器.
 
-###添加新的路由, 視圖和控制器
+### 添加新的路由, 視圖和控制器
 
 添加一個新的Angular路由涉及多個步驟, 其中包括:
 
@@ -471,11 +472,11 @@ Figure 3-5. AngularJS properties within Batarang
 + 在`app/scripts/controllers`目錄中建立一個`home.js`控制器骨架
 + 在`test/specs/controllers`目錄中建立一個`home.js`測試規範
 + 將`home.html`樣板添加到`app/views`目錄中
-+ 鏈接主引用模組中的home路由(在app/scripts/app.js`文件中)
++ 鏈接主引用模組中的home路由(在`app/scripts/app.js`文件中)
 
 所有的這些都只需要一條單獨的命令!
 
-###測試的故事
+### 測試的故事
 
 我們已經看過使用Karma如何輕鬆的啟動和運行測試. 最終, 運行所有的單元測試只需要兩條命令.
 
@@ -483,7 +484,7 @@ Yeoman使它變得更容易(如果你相信它). 每當你使用Yeoman產生一�
 
 	yeoman test
 
-###構建項目
+### 構建項目
 
 構建一個完備的應用程式可能是痛苦的, 或者至少涉及到需要步驟. Yeoman經由允許你像下面這樣做減輕了不少痛苦:
 
@@ -498,7 +499,7 @@ Yeoman使它變得更容易(如果你相信它). 每當你使用Yeoman產生一�
 
 Yeoman不支持壓縮文件, 但是根據來發者提供的訊息, 它很快會到來.
 
-##使用RequireJS整合AngularJS
+## 使用RequireJS整合AngularJS
 
 如果你提單做好更多的事情, 正好會讓你的開發環境更簡單. 後期修改你的開發環境, 會需要修改更多的文件. 依賴管理和建立包部署是任何規模的項目所憂慮的.
 
@@ -517,7 +518,7 @@ Yeoman不支持壓縮文件, 但是根據來發者提供的訊息, 它很快會�
     c. /**script**: 主AngularJS代碼庫. 這個目錄也包括我們的引導程序代碼, 主要的RequireJS整合
 
         i. /**controllers**: 這裡是AngularJS控制器
-        
+
         ii. /**directives**: 這裡是AngularJS指令
 
         iii. /**filters**: 這裡是AngularJS過濾器
@@ -703,7 +704,7 @@ Yeoman不支持壓縮文件, 但是根據來發者提供的訊息, 它很快會�
 
     // web server port
     port = 8989;
-    
+
     // cli runner port
     runnerPort = 9898;
 
@@ -716,18 +717,18 @@ Yeoman不支持壓縮文件, 但是根據來發者提供的訊息, 它很快會�
     // enable/disable watching file and executing tests whenever any file changes
     autoWatch = true;
 
-    // Start these browsers, currently available: 
+    // Start these browsers, currently available:
     // - Chrome
     // - ChromeCanary
     // - Firefox
     // - Opera
     // - Safari
     // - PhantomJS
-    // - IE if you have a windows box 
+    // - IE if you have a windows box
     browsers = ['Chrome'];
-    
+
     // Cont inuous Integrat ion mode
-    // if true, it captures browsers, runs tests, and exits 
+    // if true, it captures browsers, runs tests, and exits
     singleRun = false;
 
  我們使用一個稍微不同的格式來定義的我們的依賴(包括: false是非常重要的). 我們還添加了REQUIRE_JS和適配依賴. 最終進行這一系列工作的是`main.js`, 他會觸發我們的測試.
@@ -736,7 +737,7 @@ Yeoman不支持壓縮文件, 但是根據來發者提供的訊息, 它很快會�
 
 	require.config({
 		// !! Karma serves files from '/base'
-		// (in this case, it is the root of the project /your-project/app/js) 
+		// (in this case, it is the root of the project /your-project/app/js)
 		baseUrl: ' /base/app/scr ipts' ,
 		paths: {
         angular: 'vendor/angular/angular.min',
@@ -793,7 +794,7 @@ Yeoman不支持壓縮文件, 但是根據來發者提供的訊息, 它很快會�
 				elem = $compi le('<input type=」text」 ngbk-focus>')($rootScope);
 			}));
 
-			it('should have focus immediately', function() { 
+			it('should have focus immediately', function() {
 				expect(elem.hasClass('focus')).toBeTruthy();
 			});
 		});
@@ -812,7 +813,7 @@ Yeoman不支持壓縮文件, 但是根據來發者提供的訊息, 它很快會�
 值得慶幸的是, RequireJS的處理方式並不會影響我們所有的端到端的測試, 因此可以使用我們目前所看到的方式簡單的做到這一點. 一個範例配置如下, 假設你的服務其在http://localhost:8000上運行你的應用程式:
 
 	// base path, that will be used to resolve files
-	// (in this case is the root of the project 
+	// (in this case is the root of the project
 	basePath = '../';
 
 	// list of files / patterns to load in the browser
@@ -834,7 +835,7 @@ Yeoman不支持壓縮文件, 但是根據來發者提供的訊息, 它很快會�
 
 	// cli runner port
 	runnerPort = 9898;
-	
+
 	// enable/disable colors in the output (reporters and logs)
 	colors = true;
 

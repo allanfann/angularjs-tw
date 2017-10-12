@@ -1,15 +1,16 @@
-﻿#第二章 Angular應用程式剖析
+﻿第二章 Angular應用程式剖析
+---
 
 不像典型的函式庫, 你需要挑選你喜歡的功能, 在Angular中所有的東西都被設計成一個用於協作的套件. 在本章中我們將涵蓋Angular中所有的基本構建塊, 這樣你就可以理解如何將它們組合在一起. 這些塊都將在後面的章節中有更詳細的討論.
 
-##啟用Angular
+## 啟用Angular
 
 任何應用程式都必須做兩件事來啟用Angular:
 
 1. 加載`angular.js`庫
 2. 使用`ng-app`指令來告訴Angular它應該管理哪部分DOM
 
-###加載腳本
+### 加載腳本
 
 加載庫很簡單, 與加載其他任何JavaScript庫遵循同樣的規則. 你可以從Google的內容分發網絡(CDN)中載入腳本, 就像這樣:
 ```html
@@ -19,7 +20,7 @@
 
 如果你更喜歡本地主機(或者其他的方式), 你也可以這樣做. 只需要在`src`中指定正確的地址.
 
-###使用ng-app聲明Angular的界限
+### 使用ng-app聲明Angular的界限
 
 > 原文是Boundaries, 意思是聲明應用程式的作用域, 即Angular應用程式的作用範圍.
 
@@ -29,7 +30,7 @@
     …
     </html>
 ```
-這會告知Angular要管理頁面中的所有DOM元素. 
+這會告知Angular要管理頁面中的所有DOM元素.
 
 如果你有一個現有的應用程式, 要求使用其他的技術來管理DOM, 例如Java或者Rails, 你可以經由將它放置在頁面的一些元素例如`<div>`中來告訴Angular只需要管理頁面的一部分即可.
 ```html
@@ -41,7 +42,7 @@
     …
     </html>
 ```
-###模型/視圖/控制器
+### 模型/視圖/控制器
 
 在第一章中, 我們提到Angular支持模型/視圖/控制器的應用程式設計風格. 雖然在設計你的Angular應用程式時有很大的靈活性, 但是總是別有一番風味的:
 
@@ -70,9 +71,9 @@
     <html ng-app>
     <body ng-controller="TextController">
         <p>{{someText}}</p>
-        
+
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
-        
+
         <script>
             function TextController($scope){
                 $scope.someText = 'You have started your journey';
@@ -108,12 +109,12 @@
     <html = ng-app="myApp">
     <body ng-controller="TextController">
         <p>{{someText.message}}</p>
-        
+
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
-        
+
         <script>
             var myAppModule = angular.module('myApp',[]);
-            
+
             myAppModule.controller('TextController', function($scope){
                 var someText = {};
                 someText.message = 'You have started your journey';
@@ -127,7 +128,7 @@
 
 一會兒我們就會知道為什麼, 以及如何取得所有的模組. 但是現在, 只需要記住將所有的訊息都保存在全域的命名空間中是一件好事, 並且這也是我們使用模組的機制.
 
-##樣板和資料繫結
+## 樣板和資料繫結
 
 在Angular應用程式中樣板只是HTML文件, 就像我們從從服務端載入或者定義在`<script>`標籤中的任何其他靜態資源一樣. 在你的樣板中定義用戶界面, 可以使用標準的HTML加Angular指令來定義你所需要的UI組件.
 
@@ -154,7 +155,7 @@
 
 經由使用Angular組織你的應用程式, 你可以在你的應用程式中分離樣板和資料. 這樣做的結果是這些樣板是可以快取的. 在第一次載入之後, 實質上瀏覽器中就只需要請求新的資料了. 正如JavaScript, 圖片, CSS以及其他資源, 快取這些樣板可以給你的應用程式提供更好的性能.
 
-###顯示文字
+### 顯示文字
 
 你可以使用`ng-bind`指令在你UI的任何地方顯示和更新文字. 它有兩種等價的形式. 一種是我們見過的大括號形式:
 ```html
@@ -176,7 +177,7 @@
 
 好消息是你仍然可以在大多數樣板中使用`{{ }}`. 然而, 在你的`index.html`頁面中綁定資料, 應該使用`ng-bind`. 這樣, 直到資料加載完你的用戶將什麼也看不到.
 
-###表單輸入
+### 表單輸入
 
 在Angular中處理表單元素是很簡單的. 正如我們見過的幾個例子, 你可以使用`ng-model`屬性綁定到你的模型屬性元素上. 這適用於所有標準的表單元素, 例如文字輸入框, 單選按鈕, 復選框等等.  我們可以像這樣綁定一個復選框到一個屬性:
 ```html
@@ -199,13 +200,13 @@
 對於我們這個簡單的例子, 讓我們只設定輸出用戶預算十倍的值. 我們還將設定一個默認為0的值來開始:
 ```js
     function StartUpController($scope){
-    
+
         $scope.funding = { startingEstimate: 0 };
-        
+
         $scope.computeNeeded = function(){
             $scope.needed = $scope.startingEstimate * 10;
         };
-        
+
     }
 ```
 然而, 前面的代碼中有一個潛在的策略問題. 問題是當用於在文字輸入框中輸入時我們只是重新計算了所需的金額. 如果這個輸入框只在用戶在這個特定的輸入框中輸入時更新, 這工作得很好. 但是如果其他的輸入框也在模型中綁定了這個屬性會怎樣呢? 如果它從伺服器取得資料來更新又會怎樣?
@@ -215,15 +216,15 @@
 在這種情況下, 我們希望監控`funding.startEstimate`以及每當它改變時呼叫`computeNeeded()`. 然後我們使用這個方法重寫了`StartUpController`.
 ```js
     function StartUpController($scope){
-    
+
         $scope.funding = { startingEstimate: 0 };
-        
+
         $scope.computeNeeded = function(){
             $scope.needed = $scope.startingEstimate * 10;
         };
-        
+
         $scope.$watch('funding.startingEstimate', computeNeeded);
-        
+
     }
 ```
 注意引號中的監控表達式. 是的, 它是一個字符串. 這個字符串是評估某些東西價格的Angular表達式. 表達式可以進行簡單的運算和訪問`$scope`對象的屬性. 在本章的後面我們會涵蓋更多關於表達式的訊息.
@@ -252,7 +253,7 @@
         $scope.conputedNeeded = function(){
             $scope.needed = $scope.startingEstimate * 10;  
         };
-        
+
         $scope.requestFunding = function(){
             window.alert("Sorry, please get more customers first.");
         };
@@ -272,24 +273,24 @@
         <button>Fund my startup!</button>
         <button ng-click="reset()">Reset</button>
     </form>
-    
+
     function StartUpController($scope){
-    
+
         $scope.computeNeeded = function(){
             $scope.needed = $scope.startEstimate * 10;
         };
-        
+
         $scope.requestFunding = function(){
             window.alert("Sorry, please get more customers first");
         };
-        
+
         $scope.reset = function(){
             $scope.startEstimate = 0;
         }
-    
+
     }
 ```
-###不唐突JavaScript的一些話
+### 不唐突JavaScript的一些話
 
 在你JavaScript開發生涯的某些時刻, 有人可能會告訴你, 你應該編寫"不唐突的JavaScript", 在你的HTML中使用`click`, `mousedown`以及其他類似的內聯事件處理程序是不好的. 那麼他是正確.
 
@@ -311,7 +312,7 @@
 
 在這些概念誕生以來世界就已經改變了. 第1點, 這類有趣的群體已經不再有了. 如果你運行的瀏覽器不支持JavaScript, 那麼你應該去使用20世紀90年代建立的網站. 至於第2點, 現代的螢幕閱讀器已經跟上來了. 隨著RAIA語義標籤的正確使用,  你可以創造易訪問的富UI應用. 現在手機上運行JavaScript與也能台式機能相提並論了.
 
-因此現在的問題是: 重新恢復內聯技術來解決我們第3點和第4點的可讀性和簡潔性的問題嗎? 
+因此現在的問題是: 重新恢復內聯技術來解決我們第3點和第4點的可讀性和簡潔性的問題嗎?
 
 正如前面所提到的, 對於大多數的內聯事件處理程序, Angular都有一個等價形式的`ng-eventhandler="expression"`來替代`click`, `mousedown`, `change`等事件處理程序. 當用戶點擊一個元素時, 如果你希望得到一個回應, 你只需要簡單的使用`ng-click`這樣的指令:
 ```html
@@ -330,7 +331,7 @@
         <li class="menu-item" ng-click="doSomething()">Something</li>
     …
     </div>
-    
+
     <div class="contentArea" ng-controller="ContentAreaController">
     …
         <div ng-click="doSomething()">…</div>
@@ -342,7 +343,7 @@
     function NavController($scope){
         $scope.doSomething = doA;
     }
-    
+
     function ContentAreaController($scope){
         $scope.doSomething = doB;
     }    
@@ -355,11 +356,11 @@
 
 在Angular中, 是的, 我們可以在控制器中只編寫包含業務邏輯的代碼而不必引用DOM. 在我們之前編寫的JavaScript中, 這個問題在事件處理程序中是不存在的. 注意, 在這裡以及在這本書的其他地方, 目前我們所編寫的控制器中, 都沒有引用DOM和任何DOM事件處理程序. 你可以很輕鬆建立出這些不帶DOM的控制器. 所有的元素定位和事件處理程序都發生在Angular中.
 
-對於這個問題在編寫單元測試時. 如果你需要DOM, 你在測試中建立它, 只會增加測試程序的複雜度. 當你的頁面發生變化時, 你需要在你的測試中改變DOM, 這樣只會帶來更多的維護工作. 最後, 訪問DOM是很慢的, 測試緩慢意味著反饋不會及時以及最終解析都是緩慢的. Angular的控制器測試並沒有這些問題. 
+對於這個問題在編寫單元測試時. 如果你需要DOM, 你在測試中建立它, 只會增加測試程序的複雜度. 當你的頁面發生變化時, 你需要在你的測試中改變DOM, 這樣只會帶來更多的維護工作. 最後, 訪問DOM是很慢的, 測試緩慢意味著反饋不會及時以及最終解析都是緩慢的. Angular的控制器測試並沒有這些問題.
 
 因此你可以很輕鬆的聲明事件處理程序的簡單性和可讀性, 毫無罪惡感的違反最佳實踐.
 
-###列表, 表格和其他重複的元素
+### 列表, 表格和其他重複的元素
 
 最有用可能就是Angular指令, `ng-repeat`對於集合中的每一項都建立一次一組元素的一份副本. 你應該在你想建立列表問題的任何地方使用它.
 
@@ -368,7 +369,7 @@
     var students = [{name: 'Mary Contrary', id:'1'},
                     {name: 'Jack Sprat', id: '2'},
                     {name: 'Jill Hill', id: '3'}];
-                    
+
     function StudentListController($scope){
         $scope.students = students;
     }
@@ -394,10 +395,10 @@
     var students = [{name: 'Mary Contrary', id:'1'},
                     {name: 'Jack Sprat', id: '2'},
                     {name: 'Jill Hill', id: '3'}];
-                    
+
     function StudentListController($scope){
         $scope.students = students;
-        
+
         $scope.insertTom = function(){
             $scope.students.splice(1, 0, {name: 'Tom Thumb', id: '4'});
         };
@@ -436,7 +437,7 @@
     var album = [{name: 'Southwest Serenade', duration: '2:34'},
                  {name: 'Northern Light Waltz', duration: '3:21'},
                  {name: 'Eastern Tango', duration: '17:45'}];
-                 
+
     function AlbumController($scope){
         $scope.album = album;
     };
@@ -447,9 +448,9 @@
 2. Northern Light Waltz   3:21
 3. Eastern Tango         17:45
 
-###隱藏與顯示
+### 隱藏與顯示
 
-對於選單, 上下文敏感的工具[*原文:context-sensitive tools*]以及其他許多情況, 顯示和隱藏元素是一個關鍵的特性. 正如在Angular中, 我們基於模型的變化觸發UI的改變, 以及經由指令將改變反映到UI中. 
+對於選單, 上下文敏感的工具[*原文:context-sensitive tools*]以及其他許多情況, 顯示和隱藏元素是一個關鍵的特性. 正如在Angular中, 我們基於模型的變化觸發UI的改變, 以及經由指令將改變反映到UI中.
 
 這裡, `ng-show`和`ng-hide`用於處理這些工作. 它們基於傳遞給它們的表達式提供顯示和隱藏的功能. 即, 當你傳遞的表達式為true時`ng-show`將顯示元素, 當為false時則隱藏元素. 當表達式為true時`ng-hide`隱藏元素, 為false時顯示元素. 這取決於你使用哪個更能表達的你意圖.
 
@@ -467,15 +468,15 @@
 ```js
     function DeathrayMenuController($scope){
         $scope.menuState.show = false;
-        
+
         $scope.toggleMenu = function(){
             $scope.menuState.show = !$scope.menuState.show;
         };
-        
+
         // death ray functions left as exercise to reader
     };
 ```
-###CSS類和樣式
+### CSS類和樣式
 
 顯而易見, 現在你可以在你的應用程式中經由使用{{ }}插值符號綁定資料的方式動態的設定類和樣式. 甚至你可以在你的應用程式中組成匹配的類名. 例如, 你想根據條件禁用一些選單, 你可以像下面這樣從視覺上顯示給用戶.
 
@@ -498,7 +499,7 @@
 ```js
     function DeathrayMenuController($scope){
         $scope.isDisabled = false;
-        
+
         $scope.stun = function(){
             //stun the target, then disable menu to allow regeneration
             $scope.isDisabled = 'true';
@@ -539,13 +540,13 @@
     function HeaderController($scope){
         $scope.isError = false;
         $scope.isWarning = false;
-        
+
         $scope.showError = function(){
             $scope.messageText = 'This is an error';
             $scope.isError = true;
             $scope.isWarning = false;
         };
-        
+
         $scope.showWarning = function(){
             $scope.messageText = 'Just a warning. Please carry on';
             $scope.isWarning = true;
@@ -581,7 +582,7 @@
         };
     }
 ```
-###`src`和`href`屬性注意事項
+### `src`和`href`屬性注意事項
 
 當資料繫結給一個`<img>`或者`<a>`標籤時, 像上面一樣在`src`或者`href`屬性中使用{{ }}處理路徑將無法正常工作. 因為在瀏覽器中圖片與其他內容是並行加載的, 所以Angular無法攔截資料繫結的請求.
 
@@ -597,11 +598,11 @@
 ```html
     <a ng-href="/shop/category={{numberOfBalloons}}">some text</a>
 ```
-###表達式
+### 表達式
 
 表達式背後的思想是讓你巧妙的在你的樣板, 應用程式邏輯以及資料之間建立鉤子而與此同時防止應用程式邏輯偷偷摸摸的進入模版中.
 
-直到現在, 我們一直主要是引用原生的資料作為表達式傳遞給Angular指令. 但是其實這些表達式可以做更多的事情. 你可以處理簡單的數學運算(+, -, /, *, %), 進行比較(==, !=, >, <, >=, <=), 執行布爾邏輯運算(&&, !!, !)以及按位運算(\^, &, |). 你可以呼叫暴露在控制器的`$scope`對像上的函數, 你還可以引用資料和對像表示法([], {}, …).
+直到現在, 我們一直主要是引用原生的資料作為表達式傳遞給Angular指令. 但是其實這些表達式可以做更多的事情. 你可以處理簡單的數學運算(+, -, /, * , %), 進行比較(==, !=, >, <, >=, <=), 執行布爾邏輯運算(&&, !!, !)以及按位運算(\^, &, |). 你可以呼叫暴露在控制器的`$scope`對像上的函數, 你還可以引用資料和對像表示法([], {}, …).
 
 下面都是有效表達式的例子:
 ```html
@@ -622,7 +623,7 @@
 
 儘管表達式在很多方面比JavaScript更加嚴格, 但它們對`undefined`和`null`並不是很嚴格(更寬鬆). 樣板只是簡單的渲染一些東西, 並不會拋出一個`NullPointerException`的錯誤. 這樣就允許你安全的使用模型而沒有限制, 並且只要它們得到資料填充就讓它們出現在用戶界面中.
 
-###分離用戶界面(UI)和控制器職責
+### 分離用戶界面(UI)和控制器職責
 
 在你的應用程式中控制器有三個職責:
 
@@ -630,7 +631,7 @@
 + 經由`$scope`暴露模型和函數到視圖中.
 + 監控模型的改變並觸發行為.
 
-對於第一點第二點在本章的已經看過更多例子. 稍候我們會討論最後一點. 然而, 控制器其概念上的目的, 是提供代碼或者執行用戶與視圖交互願望的邏輯. 
+對於第一點第二點在本章的已經看過更多例子. 稍候我們會討論最後一點. 然而, 控制器其概念上的目的, 是提供代碼或者執行用戶與視圖交互願望的邏輯.
 
 為了保持控制器的小巧和易於管理, 我們建議你針對視圖的每一個區域建立一個控制器. 也就是說, 如果你有一個選單則建立一個`MenuController`. 如果你有一個麵包屑導航, 則編寫一個`BreadcrumbController`, 等等.
 
@@ -646,13 +647,13 @@
 ```
 雖然我們將這個表達為控制器嵌套, 實際的嵌套發生在作用域中($scope對像中). 傳遞給嵌套控制器的`$scope`繼承自父控制器的`$scope`原型, 這意味著傳遞給`ChildController`的`$scope`將有權訪問傳遞給`ParentController`的`$scope`的所有屬性.
 
-###使用作用域發佈模型資料
+### 使用作用域發佈模型資料
 
 將`$scope`對像傳遞給我們的控制器便是我們將模型資料暴露給視圖的機制. 可能你的應用程式中還有其他的資料, 但Angular中只能夠經由scope訪問它可以訪問的模型部分的屬性. 你可以認為scope就是作為一個上下文環境用於在你的模型中觀察變化的.
 
 我們已經看過了很多明確設定作用域的例子, 就像`$scope.count = 5`. 也有一些間接的方法在樣板內設定其自身的模型. 你可以像下面這樣做:
 
-1. 經由表達式. 由於表達式運行在控制器的作用域關聯的元素的上下文中, 在表達式中設定屬性與在控制器的作用域中設定一個屬性一樣. 
+1. 經由表達式. 由於表達式運行在控制器的作用域關聯的元素的上下文中, 在表達式中設定屬性與在控制器的作用域中設定一個屬性一樣.
 
 也就是像這樣:  
 ```html
@@ -674,7 +675,7 @@ CountController定義如下:
 ```
 2. 在表單的輸入框中使用`ng-model`. 在表達式中, 模型被指定為`ng-model`的參數也適用於控制器作用域範圍. 此外, 這將在表單字段和你指定的模型之間建立一個雙向資料繫結.
 
-###使用$watch監控模型變化
+### 使用$watch監控模型變化
 
 所有scope函數中最常用的可能就是$watch了, 當你的模型部分發生變化時它會通知你. 你可以監控單個對象屬性, 也可以監控計算結果(函數), 幾乎所有的事物都可當作一個屬性或者一個JavaScript運算能夠被訪問. 該函數的簽名如下:
 ```js
@@ -756,7 +757,7 @@ CountController定義如下:
 
 圖2-1 Shopping cart with discount
 
-###watch()中的性能注意事項
+### watch()中的性能注意事項
 
 前面例子會正確的執行, 但是這裡有一個潛在的性能問題. 雖然並不明顯, 如果你在`totalCart()`中設定一個偵錯斷點, 你會發現在渲染頁面時它被呼叫了6次. 雖然在這個應用程式中你從來沒有注意到它, 但是在更多複雜的應用程式中, 運行它6次可能是一個問題.
 
@@ -775,7 +776,7 @@ CountController定義如下:
 在下一章中你會看到, Angular有一個很好的Chrome偵錯擴充程序(Chrome插件)Batarang, 它將自動給你突出(高亮)昂貴的資料繫結(從性能的角度而言, 表示資料繫結的方式並不是較好的方式).
 
 > 譯注:
-> 
+>
 > + [Batarang](https://chrome.google.com/webstore/detail/ighdmehidhipcmcojjgiloacoafjmpfk) - 這是一個Angular偵錯與性能監控工具.
 > + [Batarang-Github](https://github.com/angular/angularjs-batarang)
 
@@ -791,24 +792,24 @@ CountController定義如下:
 ```js
     function CartController($scope){
         $scope.bill = {};
-        
+
         $scope.items = [
             {title: 'Paint pots', quantity: 8, price: 3.95},
             {title: 'Polka dots', quantity: 17, price: 12.95},
             {title: 'Pebbles', quantity: 5, price: 6.95}
         ];
-        
+
         var calculateTotals = function(){
             var total = 0;
             for(var i = 0, len = $scope.items.length; i < len; i++){
                 total = total + $scope.items[i].price * $scope.items[i].quantity;
             }
-            
+
             $scope.bill.totalCart = total;
             $scope.bill.discount = total > 100 ? 10 : 0;
             $scope.bill.subtotal = total - $scope.bill.discount;
         };
-        
+
         $scope.$watch('items', calculateTotals, true);
     }
 ```
@@ -821,13 +822,13 @@ CountController定義如下:
         for(var i = 0, i < $scope.items.length; i++){
             total = total + $scope.items[i].price * $scope.items[i].quantity;
         };
-        
+
         $scope.bill.totalCart = total;
         $scope.bill.discount = total > 100 ? 10 : 0;
         $scope.bill.subtotal = total - $scope.bill.discount;
     });
 ```
-####多個監控
+#### 多個監控
 
 如果你想監控多個屬性或者對像, 並且每當它們發生任何變化時都執行一個函數. 你有兩個基本的選擇:
 
@@ -848,7 +849,7 @@ CountController定義如下:
 ```
 這裡, 經由將第三個參數設定為`true`來要求Angular遍歷`things`對象的屬性並在它們發生任何改變時呼叫`callMe()`. 這同樣適用於數組, 只是這裡是針對一個對像.
 
-##使用模組組織依賴
+## 使用模組組織依賴
 
 在任何不平凡的應用程式中, 在你的代碼領域中弄清楚如何組織功能職責通常都是一項艱巨的任務. 我們已經看到了控制器是如何到視圖樣板中給我們提供一個存放暴露正確資料和函數的區域. 但是我們在哪裡安置支持應用程式的的其他代碼呢? 最明顯的方式就是將它們放置在控制器中的函數中.
 
@@ -863,10 +864,10 @@ CountController定義如下:
     function ItemsViewController($scope){
         // 向伺服器發起請求
         ...
-        
+
         // 進入Items對像解析回應
         ...
-        
+
         // 在$scope中設定Items數組以便視圖可以顯示它
     }
 ```
@@ -881,7 +882,7 @@ CountController定義如下:
     function ShoppingController($scope, Items){
         $scope.items = Items.query();
     }
-        
+
 現在你可能會問自己, '當然, 這看起來很酷, 但是這個Items從哪裡來?'. 前面的代碼假設我們已經定義了作為服務的`Items`.
 
 服務是一個單獨的對象(單例對像), 它執行必要的任務來支持應用程式的功能. Angular自帶了很多服務, 例如`$location`, 用於與瀏覽器中的地址交互, `$route`, 用於基於位置(URL)的變化切換視圖, 以及`$http`用於與伺服器通信.
@@ -917,7 +918,7 @@ CountController定義如下:
 ```js
     // Create a module to support our shopping views.
     var shoppingModule = angular.module('ShoppingModule', []);
-    
+
     // Set up service factory to create our Items interface to the server-side database
     shoppingModule.factory('Items', function(){
         var items = {};
@@ -929,7 +930,7 @@ CountController定義如下:
                 {title: 'Pebbles', description: 'Just little rocks', price: 6.95}
             ];
         };
-        
+
         return items;
     });
 ```
@@ -968,7 +969,7 @@ CountController定義如下:
 
 圖2-2 Shop items
 
-###我們需要多少模組?
+### 我們需要多少模組?
 
 作為服務本身可以有依賴關係, Module API允許你在的依賴中定義依賴關係.
 
@@ -978,18 +979,18 @@ CountController定義如下:
 ```js
     var appMod = angular.module('app', ['SnazzyUIWidgets', 'SuperDataSync']);
 ```
-##使用過濾器格式化資料
+## 使用過濾器格式化資料
 
 過濾器允許你在樣板中使用插值方式聲明如何轉換資料並顯示給用戶. 使用過濾器的語法如下:
 
     {{expression | filterName : parameter1 : … parameterN }}
-    
+
 其中表達式是任意的Angular表達式, `filterName`是你想使用的過濾器名稱, 過濾器的參數使用冒號分割. 參數自身也可以是任意有效的Angular表達式.
 
 Angular自帶了幾個過濾器, 像我們已經看到的currency:
 
     {{12.9 | currency}}
-    
+
 這段代碼顯示如下:
 
 > $12.9
@@ -1003,7 +1004,7 @@ Angular自帶了幾個過濾器, 像我們已經看到的currency:
             for(var i = 0; i < words.length; i++){
                 words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
             }
-            
+
             return words.join(' ');
         };
         return titleCaseFilter;
@@ -1027,7 +1028,7 @@ Angular自帶了幾個過濾器, 像我們已經看到的currency:
 
 圖2-3 Title case filter
 
-##使用路由和$location更新視圖
+## 使用路由和$location更新視圖
 
 儘管Ajax從技術上講是單頁應用程式(理論上它們僅僅在第一次請求時加載HTML頁面, 然後只需在DOM中更新區塊), 我們通常會有多個子頁面視圖用於適當的顯示給用戶或者隱藏.
 
@@ -1040,7 +1041,7 @@ Angular自帶了幾個過濾器, 像我們已經看到的currency:
         $routeProvider.
             when('url', {controller: aController, templateUrl: '/path/to/template'}).
             when(…other mappings for your app …).
-            … 
+            …
             otherwise(…what to do if nothing else matches…);
     });
 ```
@@ -1054,7 +1055,7 @@ Angular自帶了幾個過濾器, 像我們已經看到的currency:
 
 對於主樣板, 我們會做一點不同的東西. 而不是將所有的東西都放在首屏來加載, 我們只會建立一個用於放置視圖的部署樣板. 我們會持續在視圖中放置視圖, 比如選單. 在這種情況下, 我們只需要顯示一個標題包含應用的名稱. 然後使用`ng-view`指令來告訴Angular我們希望視圖出現在哪裡.
 
-###*index.html*
+### *index.html*
 ```html
     <html ng-app="Amail">
         <head>
@@ -1069,7 +1070,7 @@ Angular自帶了幾個過濾器, 像我們已經看到的currency:
 ```
 由於我們的視圖樣板將被插入到剛剛建立的容器中, 我們可以把它們編寫為區域的HTML文件. 對於郵件列表, 我們將使用`ng-repeat`來遍歷訊息列表並將它們渲染到一個表格中.
 
-###*list.html*
+### *list.html*
 ```html
     <table>
         <tr>
@@ -1088,7 +1089,7 @@ Angular自帶了幾個過濾器, 像我們已經看到的currency:
 
 為了建立消息的詳情視圖, 我們將建立一個顯示單個message對像屬性的樣板.
 
-###*detail.html*
+### *detail.html*
 ```html
     <div><strong>Subject:</strong> {{message.subject}}</div>
     <div><strong>Sender:</strong> {{message.sender}}</div>
@@ -1102,11 +1103,11 @@ Angular自帶了幾個過濾器, 像我們已經看到的currency:
 ```
 現在, 將這些樣板與一些控制器關聯起來, 我們將配置`$routeProvider`與URLs來呼叫控制器和樣板.
 
-###*controllers.js*
+### *controllers.js*
 ```js
     //Create a module for our core AMail services
     var aMailServices = angular.module('AMail', []);
-    
+
     //Set up our mappings between URLs, tempaltes. and  controllers
     function emailRouteConfig($routeProvider){
         $routeProvider.
@@ -1123,10 +1124,10 @@ Angular自帶了幾個過濾器, 像我們已經看到的currency:
             redirectTo: '/'
         });
     };
-    
+
     //Set up our route so the AMailservice can find it
     aMailServices.config(emailRouteConfig);
-    
+
     //Some take emails
     messages = [{
         id: 0, sender: 'jean@somecompany.com',
@@ -1161,11 +1162,11 @@ Angular自帶了幾個過濾器, 像我們已經看到的currency:
 ```
 我們已經建立了一個帶有多個視圖的應用程式的基本結構. 我們經由改變URL來切換視圖. 這意味著用戶也能夠使用前進和後退按鈕進行工作. 用戶可以在我們的應用程式中添加書籤和郵件鏈接, 即使只有一個真正的HTML頁面.
 
-##對話伺服器
+## 對話伺服器
 
 好了, 閒話少說. 實際的應用程式通常與真正的伺服器通訊. 移動應用和新興的Chrome桌面應用程式可能有些例外, 但是對於其他的一切, 你是否希望它持久保存雲端或者與用戶實時交互, 你可能希望你的應用程式與伺服器通信.
 
-對於這一點Angular提供了一個名為`$http`的服務. 它有一個抽像的廣泛的列表使得它能夠很容易與伺服器通信. 它支持普通的HTTP, JSONP以及CORS. 還包括防止JSON漏洞和XSRF的安全協議. 它讓你很容易轉換請求和資料回應, 甚至還實現了簡單的快取. 
+對於這一點Angular提供了一個名為`$http`的服務. 它有一個抽像的廣泛的列表使得它能夠很容易與伺服器通信. 它支持普通的HTTP, JSONP以及CORS. 還包括防止JSON漏洞和XSRF的安全協議. 它讓你很容易轉換請求和資料回應, 甚至還實現了簡單的快取.
 
 比方說, 我們希望從伺服器檢索購物站點的商品而不是我們的內存中模擬. 編寫伺服器的訊息超出了本書的範圍, 因此讓我們想像一下我們已經建立了一個服務, 當你構造一個`/product`查詢時, 它返回一個JSON形式的產品列表.
 
@@ -1216,7 +1217,7 @@ Angular自帶了幾個過濾器, 像我們已經看到的currency:
 ```
 正如我們之前所學習到的, 從長遠來看我們將這項工作委託到伺服器通信服務上可以跨控制器共享是明智的. 我們將在第5章來看這個結構和全方位的討論`$http`函數.
 
-##使用指令更新DOM
+## 使用指令更新DOM
 
 指令擴充HTML語法, 也是將行為與DOM轉換的自定義元素和屬性關聯起來的方式. 經由它們, 你可以建立復用的UI組件, 配置你的應用程式, 做任何你能想到在樣板中要做的事情.
 
@@ -1232,7 +1233,7 @@ Angular自帶了幾個過濾器, 像我們已經看到的currency:
 HTML5中有一個偉大的稱為`autofocus`的新屬性, 將鍵盤的焦點放到一個input元素. 你可以使用它讓用戶第一時間經由他們的鍵盤與元素交互而不需要點擊. 這是很好的, 因為它可以讓你聲明指定你希望瀏覽器做什麼而無需編寫任何JavaScript. 但是如果你希望將焦點放到一些非input元素上, 像鏈接或者任何`div`上會怎樣? 如果你希望它也能工作在不支持HTML5中會怎樣? 我們可以使用一個指令做到這一點.
 ```js
 	var appModule = angular.module('app', []);
-	
+
 	appModule.directive('ngbkFocus', function(){
 		return {
 			link: function(scope, elements, attrs, controller){
@@ -1245,7 +1246,7 @@ HTML5中有一個偉大的稱為`autofocus`的新屬性, 將鍵盤的焦點放�
 
 然後我們可以像這樣在一個例子中使用它:
 
-###*index.html*
+### *index.html*
 ```html
 	<html lang="en" ng-app="app">
 		...include angular and other scripts...
@@ -1260,7 +1261,7 @@ HTML5中有一個偉大的稱為`autofocus`的新屬性, 將鍵盤的焦點放�
 		</body>
 	</html>
 ```
-###*controller.js*
+### *controller.js*
 ```js
 	function SomeController($scope) {
 		$scope.message = { text: 'nothing clicked yet' };
@@ -1276,13 +1277,14 @@ HTML5中有一個偉大的稱為`autofocus`的新屬性, 將鍵盤的焦點放�
 
 	var appModule = angular.module('app', ['directives']);
 ```
+
 當載入頁面時, 用戶將看到標記為"I'm very focused!"按鈕帶有高亮焦點. 敲擊空格鍵或者回車鍵將導致點擊並呼叫`ng-click`, 將設定div的文字為"focus button clicked". 在瀏覽器中打開這個頁面, 我們將看到如圖2-4所示的東西:
 
 ![foucsed](figure/custom-directive.png)
 
 圖2-4 Foucs directive
 
-##驗證用戶輸入
+## 驗證用戶輸入
 
 Angular帶有幾個適用於單頁應用程式的不錯的功能來自動增強`<form>`元素. 其中之一個不錯的特性就是Angular讓你在表單內的input中聲明驗證狀態, 並允許在整組元素經由驗證的情況下才提交.
 
@@ -1342,6 +1344,6 @@ Angular帶有幾個適用於單頁應用程式的不錯的功能來自動增強`
 		};
 	}
 ```
-##小結
+## 小結
 
 在前兩章中, 我們看到了Angular中所有最常用的功能(特性). 對每個功能的討論, 許多額外的細節訊息都沒有覆蓋到. 在下一章, 我們將讓你經由研究一個典型的工作流程瞭解更多的訊息.
