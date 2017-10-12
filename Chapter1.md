@@ -27,7 +27,7 @@
         <script src="angular.js"></script>
         <script src="controller.js"></script>
     </head>
-    
+
     <body>
         <div ng-controller="HelloController">
             <p>{{greeting.text}}, World</p>
@@ -65,13 +65,13 @@ MVC應用程式結構是20世紀70年代被作為Smalltalk的一部分引進的.
 
 MVC背後的核心思想是你可以在你的代碼管理中清晰的分離資料(模型), 應用程式邏輯(控制器)以及給用戶呈現資料(視圖).
 
-視圖從模型中取得資料並顯示給用戶. 當用戶經由點擊或者輸入與應用程式交互時, 控制器經由改變模型中的資料來回應. 最後, 該模型會通知視圖它已經發生改變. 以便它可以更新它顯示的訊息. 
+視圖從模型中取得資料並顯示給用戶. 當用戶經由點擊或者輸入與應用程式交互時, 控制器經由改變模型中的資料來回應. 最後, 該模型會通知視圖它已經發生改變. 以便它可以更新它顯示的訊息.
 
 在Angular應用程式中, 視圖就是文件對像模型(DOM), 控制器是JavaScript類, 模型資料存儲在對象的屬性中.
 
 我們認為MVC的靈活主要是以下幾個原因. 首先, 它給你在哪裡擺放什麼提供了一個智能模型, 因此你不需要每次都創造它. 其他人參與到你的項目中合作時, 將能夠即時理解你已經編寫好的部分, 因為他們會知道你使用了MVC結構來組織你的代碼. 也許最重要的是, 它給你的應用程式更易於擴充, 維護和測試提供了極大的好處.
 
-**譯注, 參考閱讀:** 
+**譯注, 參考閱讀:**
 
 1. MVC是軟件工程中的一種軟件架構模式 - [MVC](http://zh.wikipedia.org/wiki/MVC)
 2. Smalltalk是一門面向對象的程序設計語言 - [Smalltalk](http://zh.wikipedia.org/wiki/Smalltalk)
@@ -95,7 +95,7 @@ MVC背後的核心思想是你可以在你的代碼管理中清晰的分離資�
         <script src="angular.js"></script>
         <script src="controllers.js"></script>
     </head>
-    
+
     <body>
         <div ng-controller="HelloController">
             <input ng-model="greeting.text" />
@@ -146,7 +146,7 @@ Angular最好的部分之一就是你可以如同編寫HTML一樣編寫你的樣
 
 Angular帶有許多指定, 以幫助你定義應用程式的視圖. 很快我們就會看到更多的指令. 這些指令可以定義來我們通常用作視圖的樣板中. 它們可以用於聲明設定你的應用程式如何工作或者建立可復用的組件.
 
-你並不僅限於使用Angular自帶的指令. 你也可以編寫你自己的HTML樣板擴充, 做你想做的事情. 
+你並不僅限於使用Angular自帶的指令. 你也可以編寫你自己的HTML樣板擴充, 做你想做的事情.
 
 ##範例:購物車
 
@@ -173,7 +173,7 @@ Angular帶有許多指定, 以幫助你定義應用程式的視圖. 很快我們
                 {title: 'Polka dots', quantity: 17, price: 12.95},
                 {title: 'Pebbles', quantity: 5, price: 6.95}
             ];
-            
+
             $scope.remove = function(index){
                 $scope.items.splice(index, 1);
             }
