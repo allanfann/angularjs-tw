@@ -1,10 +1,11 @@
-﻿#分析一個AngularJS應用程式
+﻿第四章 分析一個AngularJS應用程式
+---
 
 在第2章中, 我們已經討論了一些AngularJS常用的功能, 然後在第3章討論了該如何結構化開發應用程式. 現在, 我們不再繼續深單個的技術點, 第4章將著眼於一個小的, 實際的應用程式進行講解. 我們將從一個實際有效的應用程式中感受一下我們之前已經討論過的(範例)所有的部分.
 
 我們將每次介紹一部分, 然後討論其中有趣和關聯的部分, 而不是討論完整應用程式的前端和核心, 最後在本章的後面我們會慢慢簡歷這個完整的應用程式.
 
-##應用程式
+## 應用程式
 
 Guthub是一個簡單的食譜管理應用, 我們設計它用於存儲我們超級沒味的食譜, 同時展示AngularJS應用程式的各個不同的部分. 這個應用程式包含以下內容:
 
@@ -21,7 +22,7 @@ Figure 4-1. Guthub: A simple recipe management application
 
 這個完整的應用程式可以在我們的Github中的`chapter4/guthub`中得到.
 
-##模型, 控制器和樣板之間的關係
+## 模型, 控制器和樣板之間的關係
 
 在我們深入應用程式之前, 讓我們來花一兩段文字來討論以下如何將標題中的者三部分在應用程式中組織在一起工作, 同時來思考一下其中的每一部分.
 
@@ -44,7 +45,7 @@ Figure 4-1. Guthub: A simple recipe management application
 
 廢話少說, 讓我們來深入探討一下它們.
 
-##模型
+## 模型
 
 對於應用程式我們要保持模型非常簡單. 這一有一個菜譜. 在整個完整的應用程式中, 它們是一個唯一的模型. 它是構建一切的基礎.
 
@@ -80,11 +81,11 @@ Figure 4-1. Guthub: A simple recipe management application
 
 下面我們將會看到如何基於這個簡單的模型構建更複雜的UI特性.
 
-##控制器, 指令和服務
+## 控制器, 指令和服務
 
 現在我們終於可以得到這個讓我們牙齒都咬到肉裡面去的美食應用程式了. 首先, 我們來看看代碼中的指令和服務, 以及討論以下它們都是做什麼的, 然後我們我們會看看這個應用程式需要的多個控制器.
 
-###服務
+### 服務
 
 	//this file is app/scripts/services/services.js
 
@@ -140,7 +141,7 @@ Figure 4-1. Guthub: A simple recipe management application
 
 1. 注意: URL中的id是指定的RESTFul資源. 它基本上是說, 當你進行任何查詢時(`Recipe.get()`), 如果你給它傳遞一個id字段, 那麼這個字段的值將被添加早URL的尾部.
 
-也就是說, 呼叫`Recipe.get{id: 15})將會請求/recipe/15.
+也就是說, 呼叫`Recipe.get{id: 15})`將會請求/recipe/15.
 
 2. 那第二個對象是什麼呢? {id: @id}嗎? 是的, 正如他們所說的, 一行代碼可能需要一千行解釋, 那麼讓我們舉一個簡單的例子.
 
@@ -174,16 +175,16 @@ Figure 4-1. Guthub: A simple recipe management application
 	var username = 'something';
 
 	fetchServerConfig(function(){
-		fetchUserProfiles(serverConfig.USER_PROFILES, username, 
+		fetchUserProfiles(serverConfig.USER_PROFILES, username,
 			function(profiles){
-				currentProfile = profiles.currentProfile;	
-		});	
+				currentProfile = profiles.currentProfile;
+		});
 	});
 
 > 對於這種做法這裡有一些問題:
 >
 > 1. 對於最後產生的代碼, 縮進是一個噩夢, 特別是如果你要鏈接多個呼叫時.
-> 
+>
 > 2. 在回呼和函數之間錯誤報告的功能有丟失的傾向, 除非你在每一步中處理它們.
 >
 > 3. 對於你想使用`currentProfile`做什麼, 你必須在內層回呼中封裝其邏輯, 無論是直接的方式還是使用一個單獨分離的函數.
@@ -212,7 +213,7 @@ Figure 4-1. Guthub: A simple recipe management application
 
 當我們鏈接到路由時, 我們會再次回到這裡.
 
-###指令
+### 指令
 
 我們現在可以轉移到即將用在我們應用程式的指令上來. 在這個應用程式中將有兩個指令:
 
@@ -278,7 +279,7 @@ Figure 4-1. Guthub: A simple recipe management application
 
 當頁面加載時, 元素將立即獲得焦點.
 
-###控制器
+### 控制器
 
 隨著指令和服務的覆蓋, 我們終於可以進入控制器部分了, 我們有五個控制器. 所有的這些控制器都在一個單獨的文件中(`app/scripts/controllers/controllers.js`), 但是我們會一個個來瞭解它們. 讓我們來看第一個控制器, 這是一個列表控制器, 負責顯示系統中所有的食譜列表.
 
@@ -418,7 +419,7 @@ New控制器幾乎與Edit控制器完全一樣. 實際上, 你可以結合兩個
 
 完成這些工作之後, 現在我們可以聚焦到樣板部分, 來看看控制器如何掛接到它們之上, 以及如何管理現實給最終用戶的內容.
 
-##樣板
+## 樣板
 
 讓我們首先來看看最外層的主樣板, 這裡就是`index.html`. 這是我們單頁應用程式的基礎, 同時所有其他的視圖也會裝在到這個樣板的上下文中:
 
@@ -613,11 +614,11 @@ New控制器幾乎與Edit控制器完全一樣. 實際上, 你可以結合兩個
 
 最後我們還有最後的一個`ng-click`, 這是附加的第二個按鈕, 用於刪除該食譜. 注意這個按鈕只會在食譜尚未保存的時候顯示. 雖然通常它會編寫一個更有意義的`ng-hide="recipe.id", 有時候它會使用更有語義的`ng-show="!recipe.id". 也就是說, 如果食譜沒有一個id的時候顯示, 而不是在食譜有一個id的時候隱藏.
 
-##測試
+## 測試
 
 隨著控制器部分, 我們已經推遲向你顯示測試部分了, 但你知道它會即將到來, 不是嗎? 在這一節, 我們將會涵蓋你已經編寫部分的代碼測試, 以及涉及你要如何編寫它們.
 
-###單元測試
+### 單元測試
 
 第一個, 也是非常重要的一種測試是單元測試. 對於控制器(指令和服務)的測試你已經開發和編寫的正確的結構, 並且你可能會想到它們會做什麼.
 
@@ -675,7 +676,7 @@ New控制器幾乎與Edit控制器完全一樣. 實際上, 你可以結合兩個
 
 	describe('MultiRecipeLoader', function() {
 		var mockBackend, recipe, loader;
-		// _$httpBackend_ is the same as $httpBackend. Only written this way to differentiate between injected variables and local variables. 
+		// _$httpBackend_ is the same as $httpBackend. Only written this way to differentiate between injected variables and local variables.
 
 		beforeEach(inject(function(_$httpBackend_, Recipe, MultiRecipeLoader) {
 			recipe = Recipe;
@@ -683,7 +684,7 @@ New控制器幾乎與Edit控制器完全一樣. 實際上, 你可以結合兩個
 			loader = MultiRecipeLoader;
 		}));
 
-		it('should load list of recipes', function() { 
+		it('should load list of recipes', function() {
 			mockBackend.expectGET('/recipes').respond([{id: 1}, {id: 2}]);
 
 			var recipes;
@@ -757,7 +758,7 @@ New控制器幾乎與Edit控制器完全一樣. 實際上, 你可以結合兩個
 
 + 利用AngularJS的依賴注入框架著手處理元素以及控制器對像用於確保控制器會設定正確的狀態.
 
-###腳本測試
+### 腳本測試
 
 一旦我們對單元測試很滿意, 我們可能禁不住的往後靠一下, 抽根雪茄, 收工. 但是AngularJS開發者不會這麼做, 直到他們完成了他們的腳本測試(場景測試). 雖然單元測試確保我們的每一塊JS代碼都按照預期工作, 我們也要確保樣板加載, 並正確的掛接到控制器上, 以及在樣板重點擊做正確的事情.
 

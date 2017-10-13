@@ -1,4 +1,5 @@
-﻿#指令
+﻿第六章 指令
+---
 
 對於指令, 你可以擴充HTML來以添加聲明性語法來做任何你喜歡做的事情. 經由這樣做, 你可以替換一些特定於你的應用程式的通用的\<div\>s和\<span\>s元素和屬性的實際意義. 它們都帶有Angular提供的基礎功能, 但是你可以建立特定於應用程式的你自己想做的事情.
 
@@ -6,7 +7,7 @@
 
 但是首先, 我們來看看一些使用指令的語法說明.
 
-##指令和HTML驗證
+## 指令和HTML驗證
 
 在本書中, 我們已經使用了Angular內置指令的`ng-directive-name`語法. 例如`ng-repeat`, `ng-view`和`ng-controller`. 這裡, `ng`部分是Angular的命名空間, 並且dash之後的部分便是指令的名稱.
 
@@ -50,7 +51,7 @@ Table 6-1 HTML Validation Schemes
 
 如果你不適用HTML驗證器(大多數人都不使用), 你可以很好的使用在目前你所見過的例子中的命名空間-指令[namespace-directive]語法
 
-##API預覽
+## API預覽
 
 下面是一個建立任意指令偽代碼樣板
 
@@ -141,7 +142,7 @@ Table 6-2 指令定義選項
 
 下面讓我們深入細節來看看.
 
-###為你的指令命名
+### 為你的指令命名
 
 你可以用模組的指令函數為你的指令建立一個名稱, 如下所示:
 
@@ -153,11 +154,11 @@ Table 6-2 指令定義選項
 
 正如前面所描述的, Angular使用一個標準化的指令命名機制, 並且試圖有效的在樣板中使用駝峰式的指令命名方式來確保在5個不同的友好的驗證器中正常工作. 例如, 如果你已經選擇了`super-`作為你的前綴, 並且你在編寫一個日期選擇(datepicker)組件, 你可能將它命名為`superDatePicker`. 在樣板中, 你可以像這樣來使用它: `super-date-picker`, `super:date-picker`, `data-super-date-picker`或者其他多樣的形式.
 
-###指令定義對像
+### 指令定義對像
 
 正如前面提到的, 在指令定義中大多數的選項都是可選的. 實際上, 這裡並沒有硬性的要求必須選擇哪些選項, 並且你可以構造出許多有利於指令的子集參數. 讓我們來逐步討論這些選項是做什麼的.
 
-####restrict
+#### restrict
 
 `restrict`屬性允許你指定你的指令聲明風格--也就是說, 它是否能夠用於作為元素名稱, 屬性, 類[className], 或者註釋. 你可以根據表6-3來指定一個或多個聲明風格, 只需要使用一個字符串來表示其中的每一中風格:
 
@@ -201,7 +202,7 @@ Table 6-3 指令聲明用法選項
 
 如果你計劃支持IE8, 那麼基於attribute-和class-的指令就是你最好的選擇, 因為它需要額外的努力來使新元素正常工作. 可以查看Angular文件來詳細瞭解這一點.
 
-####Priorities
+#### Priorities
 
 在你有多個指令綁定在一個單獨的DOM元素並要確定它們的應用順序的情況下, 你可以使用`priority`屬性來指定應用的順序. 數值高的首先運行. 如果你沒有指定, 則默認的priority為0.
 
@@ -209,7 +210,7 @@ Table 6-3 指令聲明用法選項
 
 雖然它(proority)不在文件中, 但是你可以搜尋Angular資源中少數幾個使用`priority`的其他指令. 對於`ng-repeat`, 我們使用優先級值為1000, 這樣就有足夠的優先級處理優先處理它.
 
-####Templates
+#### Templates
 
 當建立組件, 掛件, 控制器一起其他東西時, Angular允許你提供一個樣板替換或者包裹元素的內容. 例如, 如果你在視圖中建立一組tab選項卡, 可能會呈現出如圖6-1所示視圖.
 
@@ -264,7 +265,7 @@ Table 6-3 指令聲明用法選項
 
 如果你從指令定義中移除`replace: true`, 那麼你會看到\<hello\>\<div\>Hi there\</div\>\</hello\>.
 
-通常你會希望使用`templateUrl`而不是`template`, 因為輸入HTML字符串並不是那麼有趣. `template`屬性通常有利於非常小的樣板. 使用templateUrl`同樣非常有用, 可以設定適當的頭來使樣板可快取. 我們可以像下面這樣重寫我們的`hello`指令:
+通常你會希望使用`templateUrl`而不是`template`, 因為輸入HTML字符串並不是那麼有趣. `template`屬性通常有利於非常小的樣板. 使用`templateUrl`同樣非常有用, 可以設定適當的頭來使樣板可快取. 我們可以像下面這樣重寫我們的`hello`指令:
 
 	var appModule = angular.module('app', []);
 	appModule.directive('hello', function(){
@@ -312,9 +313,9 @@ Table 6-3 指令聲明用法選項
 
 你可能希望在產品中這麼做, 僅僅作為一個減少所需的GET請求數量的技術. 你可以運行一個腳本將所有的樣板合併到一個單獨的文件中, 並在一個新的模組中加載它, 然後你就可以從你的主應用程式模組中引用它.
 
-####Transclusion
+#### Transclusion
 
-除了替換或者追加內容, 你還可以經由`transclude`屬性將原來的內容移到新樣板中. 當設定為true時, 指令將刪除原來的內容, 但是在你的樣板中經由一個名為`ng-transclude`的指令重新插入來使它可用. 
+除了替換或者追加內容, 你還可以經由`transclude`屬性將原來的內容移到新樣板中. 當設定為true時, 指令將刪除原來的內容, 但是在你的樣板中經由一個名為`ng-transclude`的指令重新插入來使它可用.
 
 我們可以使用transclusion來改變我們的範例:
 
@@ -331,7 +332,7 @@ Table 6-3 指令聲明用法選項
 
 你會看到: "Hi there Bob."
 
-###編譯和鏈接功能
+### 編譯和鏈接功能
 
 雖然插入樣板是有用的, 任何指令真正有趣的工作發生在它的`compile`和它的`link`函數中.
 
@@ -378,15 +379,15 @@ Angular加載和查找`ng-app`指令來判定應用程式界限.
 		<my-widget config="thing"></my-widget>
 	</div>
 
-這裡, `compile`函數將只被呼叫一次, 而`link`函數在每次複製`my-widget`時都會被呼叫一次--等價於元素在things中的數量. 因此, 如果`my-widget`需要到所有`my-widget`副本(實例)中修改一些公共的東西, 為了提升效率, 正確的做法是在`compile`函數中處理. 
+這裡, `compile`函數將只被呼叫一次, 而`link`函數在每次複製`my-widget`時都會被呼叫一次--等價於元素在things中的數量. 因此, 如果`my-widget`需要到所有`my-widget`副本(實例)中修改一些公共的東西, 為了提升效率, 正確的做法是在`compile`函數中處理.
 
 你可能還會注意到`compile`函數好哦的了一個`transclude`屬性函數. 這裡, 你還有機會以編寫一個函數以編程的方式transcludes內容, 對於簡單的的基於樣板不足以transclusion的情況.
 
 最後, `compile`可以返回一個`preLink`和`postLink`函數, 而`link`僅僅指向一個`posyLink`函數. `preLink`, 正如它的名字所暗示的, 它運行在編譯階段之後, 但是會在指令鏈接到子元素之前. 同樣的, `postLink`會運行在所有的子元素指令被鏈接之後. 這意味著如果你需要改變DOM結構, 你將在`posyLink`中處理. 在`preLink`中處理將會混淆流程並導致一個錯誤.
 
-###作用域
+### 作用域
 
-你會經常希望從指令中訪問作用域來監控模型的值並在它們改變時更新UI, 同時在外部時間造成模型改變時通知Angular. 者時最常見的, 當你從jQuery, Closure或者其他庫中包裹一些非Angular組件或者實現簡單的DOM事件時. 然後將Angular表達式作為屬性傳遞到你的指令中來執行. 
+你會經常希望從指令中訪問作用域來監控模型的值並在它們改變時更新UI, 同時在外部時間造成模型改變時通知Angular. 者時最常見的, 當你從jQuery, Closure或者其他庫中包裹一些非Angular組件或者實現簡單的DOM事件時. 然後將Angular表達式作為屬性傳遞到你的指令中來執行.
 
 這也是你期望使用一個作用域的原因之一, 你可以獲得三種類型的作用域選項:
 
@@ -414,7 +415,7 @@ Angular加載和查找`ng-app`指令來判定應用程式界限.
 		</tr>
 		<tr>
 			<td>isolate scope</td>
-			<td>scope: { /* attribute names and binding style */ }</td>
+			<td>scope: { /* attribute names and binding style \*/ } </td>
 		</tr>
 	<tbody>
 </table>
